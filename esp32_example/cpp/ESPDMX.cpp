@@ -28,6 +28,7 @@
 
 bool dmxStarted = false;
 int sendPin = 4;		//dafault on ESP32
+int receivePin = -1;
 
 //DMX value array and size. Entry 0 will hold startbyte
 uint8_t dmxData[dmxMaxChannel] = {};
@@ -38,7 +39,7 @@ HardwareSerial DMXSerial(1);
 void DMXESPSerial::init() {
   chanSize = defaultMax;
 
-  DMXSerial.begin(DMXSPEED, DMXFORMAT, 2, sendPin);
+  DMXSerial.begin(DMXSPEED, DMXFORMAT, receivePin, sendPin);
   pinMode(sendPin, OUTPUT);
   dmxStarted = true;
 }
@@ -53,7 +54,7 @@ void DMXESPSerial::init(int chanQuant, int dmxPin) {
 
   chanSize = chanQuant;
 
-  DMXSerial.begin(DMXSPEED, DMXFORMAT, 2, sendPin);
+  DMXSerial.begin(DMXSPEED, DMXFORMAT, receivePin, sendPin);
   pinMode(sendPin, OUTPUT);
   dmxStarted = true;
 }
@@ -91,14 +92,14 @@ void DMXESPSerial::update() {
 
   //Send break
   digitalWrite(sendPin, HIGH);
-  DMXSerial.begin(BREAKSPEED, BREAKFORMAT, 2, sendPin);
+  DMXSerial.begin(BREAKSPEED, BREAKFORMAT, receivePin, sendPin);
   DMXSerial.write(0);
   DMXSerial.flush();
   delay(1);
   DMXSerial.end();
 
   //send data
-  DMXSerial.begin(DMXSPEED, DMXFORMAT, 2, sendPin);
+  DMXSerial.begin(DMXSPEED, DMXFORMAT, receivePin, sendPin);
   digitalWrite(sendPin, LOW);
   DMXSerial.write(dmxData, chanSize);
   DMXSerial.flush();
