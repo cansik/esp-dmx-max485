@@ -1,5 +1,5 @@
-# ESP8266 to DMX over MAX485
-An example on how to send dmx over a max485 with an ESP8266.
+# ESP8266 / ESP32 to DMX over MAX485
+An example on how to send dmx over a max485 with an ESP8266 or ESP32.
 
 ### Library
 - [DMX Library for Arduino with ESP8266](https://github.com/Rickgg/ESP-Dmx)
@@ -9,4 +9,6 @@ An example on how to send dmx over a max485 with an ESP8266.
 
 ### Circuit for NodeMCU V1.0
 ![Circuit](documentation/ESP8266_DMXController_Prototype_schem.png)
+
+*GND to DMX is not necessary!*
 
