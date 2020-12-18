@@ -13,5 +13,4 @@ The library uses multiple Serial protocols which is **very** slow! I am using a 
 ### Circuit for NodeMCU V1.0
 ![Circuit](documentation/ESP8266_DMXController_Prototype_schem.png)
 
-*GND to DMX is not necessary!*
-
+*Caution: This is just an example that worked for me. Have a look at [#1](https://github.com/cansik/esp-dmx-max485/issues/1) for more information about safe wiring!
